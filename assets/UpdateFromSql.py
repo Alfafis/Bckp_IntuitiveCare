@@ -1,18 +1,22 @@
 import pandas as pd
 import json
 import os
-import sqlalchemy
-import psycopg2
+# import sqlalchemy
+# import psycopg2
 
 from pandas.io.json import json_normalize
-from sqlalchemy import create_engine
-# from os import environ as env
+# from sqlalchemy import create_engine
+from dotenv import load_dotenv
 
-print(os.environ)
-with open("./.env") as env:
-   uri  = env.read()
-   # print(uri)
+load_dotenv()
 
+PGUSER = os.getenv("PGUSER")
+PGPORT = os.getenv("PGPORT")
+PGPASSWORD = os.getenv("PGPASSWORD")
+PGHOST = os.getenv("PGHOST")
+PGDATABASE = os.getenv("PGDATABASE")
+DATABASE_URL = "postgresql://" + PGUSER + ":" + PGPASSWORD +"@"+ PGHOST +":" + PGPORT +"/"+ PGDATABASE
+print(DATABASE_URL)
 
 # with open('assets/Relatorio_cadop.json') as data_file:    
 #     d = json.load(data_file)
